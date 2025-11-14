@@ -1,0 +1,9 @@
+google-api-python-client
+google-auth-oauthlib
+google-auth
+tabulate
+numpy
+sentence-transformers
+streamlit
+boto3
+botocore
