@@ -4,7 +4,7 @@ This repository contains a small sample application that connects to a Gmail acc
 
 ## Background
 
-Gmail provides "Category Tabs" to help users manage their inboxes.  According to Google's documentation, when you use the **Default** inbox type, Gmail automatically sorts incoming emails into the following categories: **Primary** (personal and important emails), **Social** (messages from social networks), **Promotions** (deals and other promotional emails), **Updates** (automated confirmations and receipts) and **Forums** (messages from online groups and mailing lists)【25304394913824†L40-L50】.  The Google Support site reinforces that these five categories are the only supported categories and that you cannot create your own【617583219031976†L24-L35】【617583219031976†L46-L48】.  Our application uses these categories as the basis for its classification logic.  In addition, we provide a custom **Work** category that attempts to separate work‑related correspondence from personal messages.
+Gmail provides "Category Tabs" to help users manage their inboxes.  According to Google's documentation, when you use the **Default** inbox type, Gmail automatically sorts incoming emails into the following categories: **Primary** (personal and important emails), **Social** (messages from social networks), **Promotions** (deals and other promotional emails), **Updates** (automated confirmations and receipts) and **Forums** (messages from online groups and mailing lists).  The Google Support site reinforces that these five categories are the only supported categories and that you cannot create your own.  Our application uses these categories as the basis for its classification logic.  In addition, we provide a custom **Work** category that attempts to separate work‑related correspondence from personal messages.
 
 ## Project structure
 
@@ -23,9 +23,9 @@ gmail_classifier/
 
 Before running either the Python or TypeScript code, you must set up a Google Cloud project and enable the Gmail API:
 
-1. **Create a Google Cloud project** and enable the Gmail API via the [Google Cloud Console](https://console.cloud.google.com/).  Follow the "Enable the API" and "Configure OAuth consent" sections in Google’s Python quickstart【197099469592622†L417-L456】.  Be sure to add `https://www.googleapis.com/auth/gmail.readonly` to the list of OAuth scopes.
+1. **Create a Google Cloud project** and enable the Gmail API via the [Google Cloud Console](https://console.cloud.google.com/).  Follow the "Enable the API" and "Configure OAuth consent" sections in Google’s Python quickstart.  Be sure to add `https://www.googleapis.com/auth/gmail.readonly` to the list of OAuth scopes.
 2. **Download your OAuth credentials**: create OAuth client credentials (type “Desktop application”) and download the `credentials.json` file.
-3. **Place `credentials.json` into both the `python/` and `ts/` directories**.  The first time you run the code, the application will prompt you to authorize access and will store an access token (`token.json`) for subsequent runs【197099469592622†L441-L459】.
+3. **Place `credentials.json` into both the `python/` and `ts/` directories**.  The first time you run the code, the application will prompt you to authorize access and will store an access token (`token.json`) for subsequent runs.
 
 ## Running the Python script
 
@@ -50,7 +50,7 @@ python main.py
 
 The script will:
 
-* Perform the OAuth flow to obtain authorization.  A web browser will open for you to log into the Gmail account and grant read‑only access【197099469592622†L441-L459】.
+* Perform the OAuth flow to obtain authorization.  A web browser will open for you to log into the Gmail account and grant read‑only access.
 * List the 25 most recent emails, fetch their subjects, senders and snippets and classify each one using semantic embeddings.  The classification is performed by the AI model described in the next section.
 * Print a summary table showing the message subject and the assigned category.
 
@@ -99,13 +99,13 @@ docker run -it --rm -p 8501:8501 \
   gmail-classifier:latest
 ```
 
-You can then access the app at `http://localhost:8501`.  Click the button to fetch and classify your emails.  The first time you run the container, it will prompt you to authorise access to your Gmail account.  `token.json` stores the access and refresh tokens for subsequent runs【197099469592622†L441-L459】.
+You can then access the app at `http://localhost:8501`.  Click the button to fetch and classify your emails.  The first time you run the container, it will prompt you to authorise access to your Gmail account.  `token.json` stores the access and refresh tokens for subsequent runs.
 
 ## Caveats
 
 * This sample performs client‑side authorization and is meant for demonstration and personal use only.  For production applications you should implement a secure server‑side authorization flow and protect your credentials.
-* Gmail does not allow you to create arbitrary custom categories【617583219031976†L46-L48】.  The **Work** category here is a custom classifier implemented within the app and does not integrate with Gmail’s built‑in tabs.
+* Gmail does not allow you to create arbitrary custom categories.  The **Work** category here is a custom classifier implemented within the app and does not integrate with Gmail’s built‑in tabs.
 * Because the classifier uses embeddings and cosine similarity rather than Gmail’s internal machine‑learning model, results may not perfectly match the categories Gmail would assign.  Experiment with the category descriptions or consider fine‑tuning a model if higher accuracy is required.
 
 ---
-If you run into issues using the Gmail API, consult Google’s official [Python quickstart guide](https://developers.google.com/workspace/gmail/api/quickstart/python) for details on enabling the API, obtaining OAuth credentials and understanding the `token.json` storage mechanism【197099469592622†L417-L456】.
+If you run into issues using the Gmail API, consult Google’s official [Python quickstart guide](https://developers.google.com/workspace/gmail/api/quickstart/python) for details on enabling the API, obtaining OAuth credentials and understanding the `token.json` storage mechanism.
